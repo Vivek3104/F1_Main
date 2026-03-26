@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRaceStore } from "@/store/useRaceStore";
+import { DRIVERS } from "@/lib/data";
+import { useEffect } from "react";
 import { Navbar } from "@/components/f1/Navbar";
 import { LeaderboardTable } from "@/components/f1/LeaderboardTable";
 import { TrackMap } from "@/components/f1/TrackMap";
@@ -11,7 +13,15 @@ import { Cloud, Thermometer, Info } from "lucide-react";
 import Image from "next/image";
 
 export default function LiveDashboard() {
-  const [activeTab, setActiveTab] = useState("Leaderboard");
+  const { activeTab, setActiveTab, focusedDriverId, lap, setLap, totalLaps } = useRaceStore();
+  const focusedDriver = DRIVERS.find(d => d.id === focusedDriverId) || DRIVERS[0];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLap((lap % totalLaps) + 1);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [lap, totalLaps, setLap]);
 
   return (
     <main className="min-h-screen bg-[#0b0b0f] pt-24 pb-12 px-6">
@@ -24,7 +34,7 @@ export default function LiveDashboard() {
             <span className="w-2 h-2 bg-f1-red rounded-full animate-pulse" />
             <span className="text-[10px] font-black uppercase tracking-widest text-f1-red">Live Race Session</span>
           </div>
-          <h1 className="text-3xl font-black italic tracking-tighter uppercase">SÃO PAULO GP - RACE</h1>
+          <h1 className="text-3xl font-black italic tracking-tighter uppercase">SÃO PAULO GP - RACE - LAP {lap}</h1>
         </div>
 
         <Tabs 
@@ -55,16 +65,16 @@ export default function LiveDashboard() {
 
         {/* RIGHT PANEL */}
         <div className="col-span-12 lg:col-span-3 h-full flex flex-col gap-6">
-           <div className="glass rounded-xl p-4 flex items-center gap-4 group cursor-pointer border-l-4 border-f1-red">
-              <div className="relative w-16 h-16 rounded-lg overflow-hidden glass">
-                 <Image src="/helmet.png" alt="Driver" fill className="object-cover" />
+            <div className="glass rounded-xl p-4 flex items-center gap-4 group cursor-pointer border-l-4 border-f1-red bg-white/5">
+              <div className="relative w-16 h-16 rounded-lg overflow-hidden glass border border-white/10">
+                 <Image src={focusedDriver.image} alt={focusedDriver.name} fill className="object-cover object-top" />
               </div>
               <div>
                  <span className="block text-[8px] font-black text-white/40 uppercase">Current Focus</span>
-                 <h3 className="text-xl font-black italic tracking-tighter uppercase leading-none">M. VERSTAPPEN</h3>
-                 <span className="text-[10px] font-bold text-f1-red uppercase mt-1">P1 - RED BULL RACING</span>
+                 <h3 className="text-xl font-black italic tracking-tighter uppercase leading-none">{focusedDriver.name}</h3>
+                 <span className="text-[10px] font-bold text-f1-red uppercase mt-1">P1 - {focusedDriver.team}</span>
               </div>
-           </div>
+            </div>
            
            <div className="flex-1">
               <TelemetryPanel />

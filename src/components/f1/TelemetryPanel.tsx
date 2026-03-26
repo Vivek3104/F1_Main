@@ -1,38 +1,48 @@
 "use client";
 
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
+import { useRaceStore } from "@/store/useRaceStore";
+import { DRIVERS } from "@/lib/data";
+import { useEffect, useState } from "react";
 
-const data = [
-  { time: 0, speed: 280, rpm: 10500 },
-  { time: 1, speed: 310, rpm: 11200 },
-  { time: 2, speed: 325, rpm: 11800 },
-  { time: 3, speed: 338, rpm: 12100 },
-  { time: 4, speed: 290, rpm: 10800 },
-  { time: 5, speed: 240, rpm: 9500 },
-  { time: 6, speed: 180, rpm: 7200 },
-  { time: 7, speed: 210, rpm: 8500 },
-  { time: 8, speed: 260, rpm: 9800 },
-  { time: 9, speed: 300, rpm: 11000 },
-  { time: 10, speed: 320, rpm: 11500 },
-];
+const generateData = () => {
+  return Array.from({ length: 11 }, (_, i) => ({
+    time: i,
+    speed: 280 + Math.random() * 60,
+    rpm: 10000 + Math.random() * 2500,
+  }));
+};
 
 export const TelemetryPanel = () => {
+  const { focusedDriverId } = useRaceStore();
+  const [chartData, setChartData] = useState(generateData());
+  const driver = DRIVERS.find(d => d.id === focusedDriverId) || DRIVERS[0];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChartData(prev => [...prev.slice(1), { time: prev[prev.length - 1].time + 1, speed: 280 + Math.random() * 60, rpm: 10000 + Math.random() * 2500 }]);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentSpeed = Math.round(chartData[chartData.length - 1].speed);
+
   return (
-    <div className="glass rounded-xl p-6 flex flex-col h-full">
+    <div className="glass rounded-xl p-6 flex flex-col h-full border border-white/5">
       <div className="flex items-center justify-between mb-6">
         <div>
           <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Live Telemetry</span>
-          <h4 className="text-xl font-black italic tracking-tighter uppercase text-f1-red">VERSTAPPEN</h4>
+          <h4 className="text-xl font-black italic tracking-tighter uppercase text-f1-red">{driver.name.split(' ').slice(1).join(' ') || driver.name}</h4>
         </div>
         <div className="text-right">
-           <span className="block text-2xl font-black italic tracking-tighter">338 <span className="text-xs text-white/40">KM/H</span></span>
+           <span className="block text-2xl font-black italic tracking-tighter">{currentSpeed} <span className="text-xs text-white/40">KM/H</span></span>
            <span className="text-[10px] font-bold text-green-500 uppercase">DRS ENABLED</span>
         </div>
       </div>
 
       <div className="flex-1 w-full min-h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data}>
+          <AreaChart data={chartData}>
             <defs>
               <linearGradient id="colorSpeed" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#e10600" stopOpacity={0.3}/>
