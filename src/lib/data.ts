@@ -48,8 +48,11 @@ export const DRIVERS = [
     name: "MAX VERSTAPPEN",
     team: "RED BULL RACING",
     number: "1",
-    color: "#e10600",
-    image: "/helmet.png",
+    color: "#3671C6",
+    image: "/drivers/driver-1.png",
+    flag: "🇳🇱",
+    lapTime: "1:10.234",
+    trend: "up"
   },
   {
     id: 2,
@@ -57,7 +60,10 @@ export const DRIVERS = [
     team: "FERRARI",
     number: "44",
     color: "#f00000",
-    image: "/helmet.png",
+    image: "/drivers/driver-2.png",
+    flag: "🇬🇧",
+    lapTime: "1:14.583",
+    trend: "down"
   },
   {
     id: 3,
@@ -65,7 +71,10 @@ export const DRIVERS = [
     team: "MCLAREN",
     number: "4",
     color: "#ff8700",
-    image: "/helmet.png",
+    image: "/drivers/driver-3.png",
+    flag: "🇬🇧",
+    lapTime: "1:10.891",
+    trend: "up"
   },
   {
     id: 4,
@@ -73,7 +82,10 @@ export const DRIVERS = [
     team: "FERRARI",
     number: "16",
     color: "#f00000",
-    image: "/helmet.png",
+    image: "/drivers/driver-1.png",
+    flag: "🇲🇨",
+    lapTime: "1:12.617",
+    trend: "up"
   }
 ];
 
