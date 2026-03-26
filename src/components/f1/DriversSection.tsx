@@ -7,8 +7,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const DriversSection = () => {
-  // Show only first 8 for the grid section
-  const displayDrivers = DRIVERS.slice(0, 8);
+  // Show all drivers for the grid section
+  const displayDrivers = DRIVERS;
 
   return (
     <section className="py-20 px-6 max-w-[1600px] mx-auto">
