@@ -43,10 +43,10 @@ export const RACES = [
 ];
 
 export const DRIVERS = [
-  { id: 1, name: "MAX VERSTAPPEN", team: "RED BULL RACING", number: "1", color: "#3671C6", image: "/drivers/max-verstappen-png.png", flag: "🇳🇱", lapTime: "1:10.234", trend: "up" },
-  { id: 2, name: "SERGIO PEREZ", team: "RED BULL RACING", number: "11", color: "#3671C6", image: "/drivers/driver-4-png.png", flag: "🇲🇽", lapTime: "1:11.456", trend: "down" },
-  { id: 3, name: "LEWIS HAMILTON", team: "FERRARI", number: "44", color: "#f00000", image: "/drivers/lewis-hamilton-png.png", flag: "🇬🇧", lapTime: "1:14.583", trend: "down" },
-  { id: 4, name: "CHARLES LECLERC", team: "FERRARI", number: "16", color: "#f00000", image: "/drivers/driver-1-png.png", flag: "🇲🇨", lapTime: "1:12.617", trend: "up" },
+  { id: 1, name: "MAX VERSTAPPEN", team: "RED BULL RACING", number: "1", color: "#3671C6", image: "/drivers/max-verstappen-png.png", flag: "🇳🇱", countryCode: "NL", lapTime: "1:10.234", trend: "up" },
+  { id: 2, name: "SERGIO PEREZ", team: "RED BULL RACING", number: "11", color: "#3671C6", image: "/drivers/driver-4-png.png", flag: "🇲🇽", countryCode: "MX", lapTime: "1:11.456", trend: "down" },
+  { id: 3, name: "LEWIS HAMILTON", team: "FERRARI", number: "44", color: "#f00000", image: "/drivers/lewis-hamilton-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.583", trend: "down" },
+  { id: 4, name: "CHARLES LECLERC", team: "FERRARI", number: "16", color: "#f00000", image: "/drivers/driver-1-png.png", flag: "🇲🇨", countryCode: "MC", lapTime: "1:12.617", trend: "up" },
   { id: 5, name: "LANDO NORRIS", team: "MCLAREN", number: "4", color: "#ff8700", image: "/drivers/driver-3-png.png", flag: "🇬🇧", lapTime: "1:10.891", trend: "up" },
   { id: 6, name: "OSCAR PIASTRI", team: "MCLAREN", number: "81", color: "#ff8700", image: "/drivers/driver-3-png.png", flag: "🇦🇺", lapTime: "1:11.123", trend: "up" },
   { id: 7, name: "GEORGE RUSSELL", team: "MERCEDES", number: "63", color: "#27F4D2", image: "/drivers/driver-2-png.png", flag: "🇬🇧", lapTime: "1:11.890", trend: "up" },

@@ -2,7 +2,7 @@ import { Navbar } from "@/components/f1/Navbar";
 import { HeroBanner } from "@/components/f1/HeroBanner";
 import { Section } from "@/components/f1/Section";
 import { RaceCard } from "@/components/f1/RaceCard";
-import { DriverCard } from "@/components/f1/DriverCard";
+import { DriversSection } from "@/components/f1/DriversSection";
 import { SLIDES, RACES, DRIVERS } from "@/lib/data";
 
 export default function Home() {
@@ -28,13 +28,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section title="Top Drivers" subtitle="2026 World Championship Standings">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {DRIVERS.map((driver) => (
-              <DriverCard key={driver.id} {...driver} />
-            ))}
-          </div>
-        </Section>
+        <DriversSection />
 
         <Section title="Teams" subtitle="Constructor Standings">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
