@@ -8,14 +8,20 @@ export default function DriversPage() {
   const sortedDrivers = [...DRIVERS].sort((a, b) => (b.points || 0) - (a.points || 0));
 
   return (
-    <main className="min-h-screen bg-f1-black pt-24 pb-12">
+    <main className="min-h-screen bg-[#0b0b0b] relative overflow-hidden pt-24 pb-12">
+      {/* CINEMATIC BACKGROUND */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -left-[10%] w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(255,24,1,0.15)_0%,transparent_70%)]" />
+        <div className="absolute top-0 right-0 w-full h-full bg-[linear-gradient(45deg,rgba(0,0,0,1)_30%,rgba(139,0,0,0.1)_100%)]" />
+      </div>
+
       <Navbar />
       
       {/* GRID VIEW */}
       <Section title="Drivers" subtitle="2026 Grid Lineup">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {DRIVERS.map((driver) => (
-            <DriverCard key={driver.id} {...driver} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 relative z-10">
+          {sortedDrivers.slice(0, 3).map((driver, idx) => (
+            <DriverCard key={driver.id} {...driver} rank={idx + 1} />
           ))}
         </div>
       </Section>
