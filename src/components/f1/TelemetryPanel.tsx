@@ -15,17 +15,27 @@ const generateData = () => {
 
 export const TelemetryPanel = () => {
   const { focusedDriverId } = useRaceStore();
-  const [chartData, setChartData] = useState(generateData());
+  const [chartData, setChartData] = useState<{time: number, speed: number, rpm: number}[]>([]);
   const driver = DRIVERS.find(d => d.id === focusedDriverId) || DRIVERS[0];
 
   useEffect(() => {
+    // Initialize data only on client to avoid hydration mismatch
+    setChartData(generateData());
+
     const interval = setInterval(() => {
-      setChartData(prev => [...prev.slice(1), { time: prev[prev.length - 1].time + 1, speed: 280 + Math.random() * 60, rpm: 10000 + Math.random() * 2500 }]);
+      setChartData(prev => {
+        if (prev.length === 0) return generateData();
+        return [...prev.slice(1), { 
+          time: prev[prev.length - 1].time + 1, 
+          speed: 280 + Math.random() * 60, 
+          rpm: 10000 + Math.random() * 2500 
+        }];
+      });
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const currentSpeed = Math.round(chartData[chartData.length - 1].speed);
+  const currentSpeed = chartData.length > 0 ? Math.round(chartData[chartData.length - 1].speed) : 0;
 
   return (
     <div className="glass rounded-xl p-6 flex flex-col h-full border border-white/5">
