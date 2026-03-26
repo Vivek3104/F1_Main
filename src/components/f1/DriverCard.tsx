@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Trophy } from "lucide-react";
 
 interface DriverCardProps {
   name: string;
@@ -10,10 +9,11 @@ interface DriverCardProps {
   number: string;
   image: string;
   color: string;
-  countryCode?: string;
-  lapTime?: string;
-  trend?: "up" | "down";
+  points?: number;
+  wins?: number;
+  podiums?: number;
   championships?: number;
+  starts?: number;
 }
 
 export const DriverCard = ({
@@ -22,87 +22,87 @@ export const DriverCard = ({
   number,
   image,
   color,
-  countryCode = "NL",
-  lapTime = "1:15.234",
-  trend = "up",
-  championships = 0
+  points = 0,
+  wins = 0,
+  podiums = 0,
+  championships = 0,
+  starts = 0
 }: DriverCardProps) => {
+  const nameParts = name.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ");
+
   return (
     <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="relative group cursor-pointer aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 transition-shadow duration-500 w-full"
-      style={{
-        // @ts-ignore
-        "--glow-color": color
-      }}
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="relative aspect-[3/4] w-full bg-[#111] rounded-[2.5rem] overflow-hidden border border-white/5 cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col pt-10 px-8 pb-8"
     >
-      {/* BACKGROUND GRADIENT */}
-      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#1a1a1a] to-[#0b0b0f]" />
+      {/* DOT PATTERN OVERLAY */}
+      <div className="absolute inset-0 dot-pattern opacity-10 pointer-events-none" />
 
-      {/* DRIVER IMAGE */}
-      <div className="absolute inset-0 z-10">
-        <motion.div
-          whileHover={{ scale: 1.1, y: 10 }}
-          className="relative w-full h-full" // Use 100% height since parent has aspect-ratio
-        >
-          <Image
-            src={image}
-            alt={name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-            className="object-contain object-bottom transition-transform duration-700"
-            priority={parseInt(number) < 10}
-          />
-        </motion.div>
+      {/* TEAM STRIPES (CENTERED VERTICAL) */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-24 flex z-0 opacity-40">
+        <div className="w-1/3 h-full" style={{ backgroundColor: color }} />
+        <div className="w-1/3 h-full bg-white/20" />
+        <div className="w-1/3 h-full" style={{ backgroundColor: color }} />
       </div>
 
-      {/* CHAMPIONSHIPS BADGE */}
-      {championships > 0 && (
-        <div className="absolute top-4 left-4 z-40 bg-f1-red text-white py-1 px-2 rounded-md flex items-center gap-1.5 shadow-lg">
-          <Trophy className="w-3 h-3" />
-          <span className="text-[10px] font-black uppercase tracking-widest">{championships}x Champion</span>
-        </div>
-      )}
-
-      {/* DRIVER NUMBER (TOP RIGHT - FADED) */}
-      <div className="absolute top-2 right-4 z-0 text-8xl font-black italic text-white/5 select-none tracking-tighter">
-        {number}
-      </div>
-
-      {/* INFO PANEL (BOTTOM OVERLAY) */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 p-5 bg-white/5 backdrop-blur-md border-t border-white/10 group-hover:bg-white/10 transition-colors">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Current Lap Time</span>
-          <span className={`${trend === "up" ? "text-green-400" : "text-f1-red"}`}>
-            {trend === "up" ? "▲" : "▼"}
-          </span>
-        </div>
-
-        <div className="flex flex-col mb-4">
-          <div className="flex items-baseline gap-1">
-            <span className="text-5xl font-black italic tracking-tighter leading-none">
-              {lapTime.split('.')[0]}<span className="text-white/20">.</span>
-            </span>
-            <span className="text-3xl font-black italic tracking-tighter text-white/40">
-              {lapTime.split('.')[1]}
-            </span>
+      {/* TOP SECTION: LOGO + NAME & STAT */}
+      <div className="relative z-20 flex justify-between items-start mb-4">
+        <div className="flex flex-col gap-2">
+          {/* TEAM LOGO PLACEHOLDER (CIRCLE) */}
+          <div className="w-12 h-12 rounded-full border-2 border-white/10 flex items-center justify-center p-1 bg-black/20">
+             <div className="w-full h-full rounded-full" style={{ backgroundColor: color }} />
+          </div>
+          <div>
+            <h3 className="text-xl md:text-2xl font-black leading-[1.1] tracking-tighter text-white">
+              <span className="text-white/40 block text-xs uppercase font-bold tracking-widest mb-1">{team}</span>
+              {firstName}<br />
+              <span className="uppercase text-f1-red">{lastName}</span>
+            </h3>
           </div>
         </div>
 
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[10px] font-bold text-white/40">{countryCode}</span>
-            <span className="text-sm font-black uppercase tracking-tight">{name}</span>
+        <div className="text-right">
+          <div className="text-4xl md:text-5xl font-black italic tracking-tighter text-white leading-none">
+            {points}
           </div>
-          <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">{team}</p>
+          <div className="text-[10px] font-black uppercase tracking-widest text-white/40 mt-1">Points</div>
         </div>
       </div>
 
-      {/* TEAM COLOR ACCENT (VERTICAL + GLOW) */}
-      <div
-        className="absolute top-0 left-0 w-1 h-full z-40 transition-all duration-500 group-hover:w-1.5 shadow-[0_0_20px_var(--glow-color)] group-hover:shadow-[0_0_30px_var(--glow-color)]"
-        style={{ backgroundColor: color }}
-      />
+      {/* CENTER SECTION: DRIVER IMAGE */}
+      <div className="flex-1 relative z-10 transition-transform group-hover:scale-110 duration-500">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          sizes="(max-width: 768px) 100vw, 30vw"
+          className="object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
+          priority
+        />
+      </div>
+
+      {/* BOTTOM SECTION: 4-STATS ROW */}
+      <div className="relative z-20 mt-6 pt-6 border-t border-white/5 grid grid-cols-4 gap-2">
+        <div className="flex flex-col items-center">
+          <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1 text-center leading-tight">GPs</span>
+          <span className="text-sm md:text-md font-black italic text-white">{starts}</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1 text-center leading-tight">Wins</span>
+          <span className="text-sm md:text-md font-black italic text-white">{wins}</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1 text-center leading-tight">Podiums</span>
+          <span className="text-sm md:text-md font-black italic text-white">{podiums}</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-[8px] font-black text-white/20 uppercase tracking-widest mb-1 text-center leading-tight">Titles</span>
+          <span className="text-sm md:text-md font-black italic text-white">{championships}</span>
+        </div>
+      </div>
+
     </motion.div>
   );
 };

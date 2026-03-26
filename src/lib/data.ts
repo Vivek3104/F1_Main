@@ -44,35 +44,35 @@ export const RACES = [
 
 export const DRIVERS = [
   // MERCEDES
-  { id: 1, name: "GEORGE RUSSELL", team: "MERCEDES", number: "63", color: "#27F4D2", image: "/drivers/driver-5-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:11.234", trend: "up", points: 245, wins: 2, podiums: 8, championships: 0 },
-  { id: 2, name: "KIMI ANTONELLI", team: "MERCEDES", number: "12", color: "#27F4D2", image: "/drivers/driver-6-png.png", flag: "🇮🇹", countryCode: "IT", lapTime: "1:12.456", trend: "up", points: 89, wins: 0, podiums: 1, championships: 0 },
+  { id: 1, name: "GEORGE RUSSELL", team: "MERCEDES", number: "63", color: "#27F4D2", image: "/drivers/driver-5-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:11.234", trend: "up", points: 245, wins: 2, podiums: 8, championships: 0, starts: 124 },
+  { id: 2, name: "KIMI ANTONELLI", team: "MERCEDES", number: "12", color: "#27F4D2", image: "/drivers/driver-6-png.png", flag: "🇮🇹", countryCode: "IT", lapTime: "1:12.456", trend: "up", points: 89, wins: 0, podiums: 1, championships: 0, starts: 24 },
   // FERRARI
-  { id: 3, name: "CHARLES LECLERC", team: "FERRARI", number: "16", color: "#f00000", image: "/drivers/driver-1-png.png", flag: "🇲🇨", countryCode: "MC", lapTime: "1:12.617", trend: "up", points: 288, wins: 4, podiums: 10, championships: 0 },
-  { id: 4, name: "LEWIS HAMILTON", team: "FERRARI", number: "44", color: "#f00000", image: "/drivers/lewis-hamilton-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.583", trend: "down", points: 312, wins: 3, podiums: 11, championships: 7 },
+  { id: 3, name: "CHARLES LECLERC", team: "FERRARI", number: "16", color: "#f00000", image: "/drivers/driver-1-png.png", flag: "🇲🇨", countryCode: "MC", lapTime: "1:12.617", trend: "up", points: 288, wins: 4, podiums: 10, championships: 0, starts: 145 },
+  { id: 4, name: "LEWIS HAMILTON", team: "FERRARI", number: "44", color: "#f00000", image: "/drivers/lewis-hamilton-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.583", trend: "down", points: 312, wins: 3, podiums: 11, championships: 7, starts: 350 },
   // MCLAREN
-  { id: 5, name: "LANDO NORRIS", team: "MCLAREN", number: "1", color: "#ff8700", image: "/drivers/driver-3-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:10.891", trend: "up", points: 345, wins: 6, podiums: 14, championships: 1 },
-  { id: 6, name: "OSCAR PIASTRI", team: "MCLAREN", number: "81", color: "#ff8700", image: "/drivers/driver-6-png.png", flag: "🇦🇺", countryCode: "AU", lapTime: "1:11.123", trend: "up", points: 198, wins: 1, podiums: 5, championships: 0 },
+  { id: 5, name: "LANDO NORRIS", team: "MCLAREN", number: "1", color: "#ff8700", image: "/drivers/driver-3-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:10.891", trend: "up", points: 345, wins: 6, podiums: 14, championships: 1, starts: 120 },
+  { id: 6, name: "OSCAR PIASTRI", team: "MCLAREN", number: "81", color: "#ff8700", image: "/drivers/driver-6-png.png", flag: "🇦🇺", countryCode: "AU", lapTime: "1:11.123", trend: "up", points: 198, wins: 1, podiums: 5, championships: 0, starts: 44 },
   // HAAS
-  { id: 7, name: "ESTEBAN OCON", team: "HAAS F1 TEAM", number: "31", color: "#B6BABD", image: "/drivers/driver-2-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:14.111", trend: "down", points: 45, wins: 0, podiums: 0, championships: 0 },
-  { id: 8, name: "OLIVER BEARMAN", team: "HAAS F1 TEAM", number: "87", color: "#B6BABD", image: "/drivers/driver-1-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.444", trend: "up", points: 32, wins: 0, podiums: 0, championships: 0 },
+  { id: 7, name: "ESTEBAN OCON", team: "HAAS F1 TEAM", number: "31", color: "#B6BABD", image: "/drivers/driver-2-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:14.111", trend: "down", points: 45, wins: 0, podiums: 0, championships: 0, starts: 150 },
+  { id: 8, name: "OLIVER BEARMAN", team: "HAAS F1 TEAM", number: "87", color: "#B6BABD", image: "/drivers/driver-1-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.444", trend: "up", points: 32, wins: 0, podiums: 0, championships: 0, starts: 22 },
   // RED BULL
-  { id: 9, name: "MAX VERSTAPPEN", team: "RED BULL RACING", number: "3", color: "#3671C6", image: "/drivers/max-verstappen-png.png", flag: "🇳🇱", countryCode: "NL", lapTime: "1:10.456", trend: "up", points: 320, wins: 8, podiums: 12, championships: 4 },
-  { id: 10, name: "ISACK HADJAR", team: "RED BULL RACING", number: "6", color: "#3671C6", image: "/drivers/driver-4-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:11.888", trend: "up", points: 67, wins: 0, podiums: 0, championships: 0 },
+  { id: 9, name: "MAX VERSTAPPEN", team: "RED BULL RACING", number: "3", color: "#3671C6", image: "/drivers/max-verstappen-png.png", flag: "🇳🇱", countryCode: "NL", lapTime: "1:10.456", trend: "up", points: 320, wins: 8, podiums: 12, championships: 4, starts: 205 },
+  { id: 10, name: "ISACK HADJAR", team: "RED BULL RACING", number: "6", color: "#3671C6", image: "/drivers/driver-4-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:11.888", trend: "up", points: 67, wins: 0, podiums: 0, championships: 0, starts: 18 },
   // RACING BULLS
-  { id: 11, name: "LIAM LAWSON", team: "RACING BULLS", number: "30", color: "#6692FF", image: "/drivers/driver-3-png.png", flag: "🇳🇿", countryCode: "NZ", lapTime: "1:13.555", trend: "up", points: 42, wins: 0, podiums: 0, championships: 0 },
-  { id: 12, name: "ARVID LINDBLAD", team: "RACING BULLS", number: "41", color: "#6692FF", image: "/drivers/driver-6-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.001", trend: "up", points: 12, wins: 0, podiums: 0, championships: 0 },
+  { id: 11, name: "LIAM LAWSON", team: "RACING BULLS", number: "30", color: "#6692FF", image: "/drivers/driver-3-png.png", flag: "🇳🇿", countryCode: "NZ", lapTime: "1:13.555", trend: "up", points: 42, wins: 0, podiums: 0, championships: 0, starts: 15 },
+  { id: 12, name: "ARVID LINDBLAD", team: "RACING BULLS", number: "41", color: "#6692FF", image: "/drivers/driver-6-png.png", flag: "🇬🇧", countryCode: "GB", lapTime: "1:14.001", trend: "up", points: 12, wins: 0, podiums: 0, championships: 0, starts: 10 },
   // ALPINE
-  { id: 13, name: "PIERRE GASLY", team: "ALPINE", number: "10", color: "#0093cc", image: "/drivers/driver-2-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:13.123", trend: "up", points: 56, wins: 0, podiums: 0, championships: 0 },
-  { id: 14, name: "FRANCO COLAPINTO", team: "ALPINE", number: "43", color: "#0093cc", image: "/drivers/driver-3-png.png", flag: "🇦🇷", countryCode: "AR", lapTime: "1:14.001", trend: "up", points: 28, wins: 0, podiums: 0, championships: 0 },
+  { id: 13, name: "PIERRE GASLY", team: "ALPINE", number: "10", color: "#0093cc", image: "/drivers/driver-2-png.png", flag: "🇫🇷", countryCode: "FR", lapTime: "1:13.123", trend: "up", points: 56, wins: 0, podiums: 0, championships: 0, starts: 130 },
+  { id: 14, name: "FRANCO COLAPINTO", team: "ALPINE", number: "43", color: "#0093cc", image: "/drivers/driver-3-png.png", flag: "🇦🇷", countryCode: "AR", lapTime: "1:14.001", trend: "up", points: 28, wins: 0, podiums: 0, championships: 0, starts: 12 },
   // AUDI
-  { id: 15, name: "NICO HULKENBERG", team: "AUDI", number: "27", color: "#f00000", image: "/drivers/driver-4-png.png", flag: "🇩🇪", countryCode: "DE", lapTime: "1:13.888", trend: "up", points: 38, wins: 0, podiums: 0, championships: 0 },
-  { id: 16, name: "GABRIEL BORTOLETO", team: "AUDI", number: "5", color: "#f00000", image: "/drivers/driver-6-png.png", flag: "🇧🇷", countryCode: "BR", lapTime: "1:14.222", trend: "up", points: 15, wins: 0, podiums: 0, championships: 0 },
+  { id: 15, name: "NICO HULKENBERG", team: "AUDI", number: "27", color: "#f00000", image: "/drivers/driver-4-png.png", flag: "🇩🇪", countryCode: "DE", lapTime: "1:13.888", trend: "up", points: 38, wins: 0, podiums: 0, championships: 0, starts: 220 },
+  { id: 16, name: "GABRIEL BORTOLETO", team: "AUDI", number: "5", color: "#f00000", image: "/drivers/driver-6-png.png", flag: "🇧🇷", countryCode: "BR", lapTime: "1:14.222", trend: "up", points: 15, wins: 0, podiums: 0, championships: 0, starts: 10 },
   // WILLIAMS
-  { id: 17, name: "CARLOS SAINZ", team: "WILLIAMS", number: "55", color: "#64C4FF", image: "/drivers/driver-1-png.png", flag: "🇪🇸", countryCode: "ES", lapTime: "1:12.111", trend: "up", points: 142, wins: 0, podiums: 3, championships: 0 },
-  { id: 18, name: "ALEXANDER ALBON", team: "WILLIAMS", number: "23", color: "#64C4FF", image: "/drivers/driver-2-png.png", flag: "🇹🇭", countryCode: "TH", lapTime: "1:12.555", trend: "up", points: 76, wins: 0, podiums: 1, championships: 0 },
+  { id: 17, name: "CARLOS SAINZ", team: "WILLIAMS", number: "55", color: "#64C4FF", image: "/drivers/driver-1-png.png", flag: "🇪🇸", countryCode: "ES", lapTime: "1:12.111", trend: "up", points: 142, wins: 0, podiums: 3, championships: 0, starts: 200 },
+  { id: 18, name: "ALEXANDER ALBON", team: "WILLIAMS", number: "23", color: "#64C4FF", image: "/drivers/driver-2-png.png", flag: "🇹🇭", countryCode: "TH", lapTime: "1:12.555", trend: "up", points: 76, wins: 0, podiums: 1, championships: 0, starts: 100 },
   // CADILLAC
-  { id: 19, name: "SERGIO PEREZ", team: "CADILLAC", number: "11", color: "#ffffff", image: "/drivers/driver-4-png.png", flag: "🇲🇽", countryCode: "MX", lapTime: "1:14.111", trend: "down", points: 112, wins: 0, podiums: 2, championships: 0 },
-  { id: 20, name: "VALTTERI BOTTAS", team: "CADILLAC", number: "77", color: "#ffffff", image: "/drivers/driver-5-png.png", flag: "🇫🇮", countryCode: "FI", lapTime: "1:14.999", trend: "down", points: 58, wins: 0, podiums: 0, championships: 0 },
+  { id: 19, name: "SERGIO PEREZ", team: "CADILLAC", number: "11", color: "#ffffff", image: "/drivers/driver-4-png.png", flag: "🇲🇽", countryCode: "MX", lapTime: "1:14.111", trend: "down", points: 112, wins: 0, podiums: 2, championships: 0, starts: 270 },
+  { id: 20, name: "VALTTERI BOTTAS", team: "CADILLAC", number: "77", color: "#ffffff", image: "/drivers/driver-5-png.png", flag: "🇫🇮", countryCode: "FI", lapTime: "1:14.999", trend: "down", points: 58, wins: 0, podiums: 0, championships: 0, starts: 230 },
 ];
 
 export const TEAMS = [
