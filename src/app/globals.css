@@ -16,11 +16,6 @@
   border: 1px solid rgb(255 255 255 / 0.1);
 }
 
-@utility dot-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 8px 8px;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
