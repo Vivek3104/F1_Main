@@ -7,8 +7,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const DriversSection = () => {
-  // Show only first 8 for the grid section
-  const displayDrivers = DRIVERS.slice(0, 8);
+  // Show only first 12 for the home grid section
+  const displayDrivers = DRIVERS.slice(0, 12);
 
   return (
     <section className="py-20 px-6 max-w-[1600px] mx-auto">
@@ -27,7 +27,7 @@ export const DriversSection = () => {
       </div>
 
       {/* RESPONSIVE GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {displayDrivers.map((driver, idx) => (
           <motion.div
             key={driver.id}
@@ -42,10 +42,6 @@ export const DriversSection = () => {
               number={driver.number}
               image={driver.image}
               color={driver.color}
-              // @ts-ignore
-              countryCode={driver.countryCode}
-              lapTime={driver.lapTime}
-              trend={driver.trend as any}
             />
           </motion.div>
         ))}

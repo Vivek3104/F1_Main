@@ -10,8 +10,7 @@ interface DriverCardProps {
   image: string;
   color: string;
   countryCode?: string;
-  lapTime?: string;
-  trend?: "up" | "down";
+  flag?: string; // Add flag prop back for the UI
 }
 
 export const DriverCard = ({ 
@@ -20,76 +19,57 @@ export const DriverCard = ({
   number, 
   image, 
   color, 
-  countryCode = "NL", 
-  lapTime = "1:15.234", 
-  trend = "up" 
 }: DriverCardProps) => {
+  const firstName = name.split(' ')[0];
+  const lastName = name.split(' ').slice(1).join(' ');
+
   return (
     <motion.div 
-      whileHover={{ scale: 1.03 }}
-      className="relative group cursor-pointer aspect-4/5 rounded-2xl overflow-hidden border border-white/10 transition-shadow duration-500"
-      style={{ 
-         // @ts-ignore
-         "--glow-color": color 
-      }}
+      whileHover={{ scale: 1.02 }}
+      className="relative flex items-center h-48 rounded-xl overflow-hidden group cursor-pointer"
+      style={{ backgroundColor: color }}
     >
-      {/* BACKGROUND GRADIENT */}
-      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#1a1a1a] to-[#0b0b0f]" />
+      {/* TEXTURE / PATTERN OVERLAY */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '12px 12px' }} />
       
-      {/* DRIVER IMAGE */}
-      <div className="absolute inset-0 z-10">
+      {/* LEFT INFO SIDE */}
+      <div className="relative z-10 flex-1 p-6 flex flex-col justify-between h-full bg-linear-to-r from-black/40 to-transparent">
+        <div>
+          <h3 className="flex flex-col leading-none">
+            <span className="text-xl font-light text-white opacity-90">{firstName}</span>
+            <span className="text-3xl font-black uppercase tracking-tighter text-white">{lastName}</span>
+          </h3>
+          <p className="text-xs font-bold text-white/70 uppercase mt-1">{team}</p>
+          <span className="text-4xl font-black italic text-white/20 mt-2 block">{number}</span>
+        </div>
+        
+        {/* ROUND FLAG ICON */}
+        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 relative">
+           <div className="absolute inset-0 flex items-center justify-center bg-white/10 text-lg">
+             {/* Fallback to text if no image, but we'll use a placeholder or the emoji */}
+             🏁
+           </div>
+        </div>
+      </div>
+
+      {/* RIGHT IMAGE SIDE */}
+      <div className="relative z-10 w-[45%] h-full">
         <motion.div
-          whileHover={{ scale: 1.1, y: 10 }}
-          className="relative w-full h-[65%]"
+          whileHover={{ x: 10, scale: 1.05 }}
+          className="relative w-full h-full"
         >
           <Image 
             src={image} 
             alt={name} 
             fill
-            className="object-contain object-bottom transition-transform duration-700" 
+            className="object-contain object-bottom transition-transform duration-500" 
           />
         </motion.div>
       </div>
 
-      {/* DRIVER NUMBER (TOP RIGHT - FADED) */}
-      <div className="absolute top-2 right-4 z-0 text-8xl font-black italic text-white/5 select-none tracking-tighter">
-        {number}
-      </div>
-
-      {/* INFO PANEL (BOTTOM OVERLAY) */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 p-5 bg-white/5 backdrop-blur-md border-t border-white/10 group-hover:bg-white/10 transition-colors">
-        <div className="flex items-center gap-2 mb-3">
-           <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Current Lap Time</span>
-           <span className={`${trend === "up" ? "text-green-400" : "text-f1-red"}`}>
-              {trend === "up" ? "▲" : "▼"}
-           </span>
-        </div>
-
-        <div className="flex flex-col mb-4">
-           <div className="flex items-baseline gap-1">
-              <span className="text-5xl font-black italic tracking-tighter leading-none">
-                 {lapTime.split('.')[0]}<span className="text-white/20">.</span>
-              </span>
-              <span className="text-3xl font-black italic tracking-tighter text-white/40">
-                 {lapTime.split('.')[1]}
-              </span>
-           </div>
-        </div>
-
-        <div className="flex flex-col">
-           <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-[10px] font-bold text-white/40">{countryCode}</span>
-              <span className="text-sm font-black uppercase tracking-tight">{name}</span>
-           </div>
-           <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">{team}</p>
-        </div>
-      </div>
-
-      {/* TEAM COLOR ACCENT (VERTICAL + GLOW) */}
-      <div 
-        className="absolute top-0 left-0 w-1 h-full z-40 transition-all duration-500 group-hover:w-1.5 shadow-[0_0_20px_var(--glow-color)] group-hover:shadow-[0_0_30px_var(--glow-color)]"
-        style={{ backgroundColor: color }}
-      />
+      {/* GRADIENT OVERLAY FOR DEPTH */}
+      <div className="absolute inset-0 bg-linear-to-r from-black/20 via-transparent to-black/10 pointer-events-none" />
     </motion.div>
   );
 };
