@@ -9,9 +9,7 @@ interface DriverCardProps {
   number: string;
   image: string;
   color: string;
-  countryCode?: string;
-  lapTime?: string;
-  trend?: "up" | "down";
+  flag?: string;
 }
 
 export const DriverCard = ({ 
@@ -20,76 +18,70 @@ export const DriverCard = ({
   number, 
   image, 
   color, 
-  countryCode = "NL", 
-  lapTime = "1:15.234", 
-  trend = "up" 
+  flag = "🇮🇹"
 }: DriverCardProps) => {
+  // Split name for visual hierarchy
+  const nameParts = name.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ");
+
   return (
     <motion.div 
-      whileHover={{ scale: 1.03 }}
-      className="relative group cursor-pointer aspect-4/5 rounded-2xl overflow-hidden border border-white/10 transition-shadow duration-500"
-      style={{ 
-         // @ts-ignore
-         "--glow-color": color 
-      }}
+      whileHover={{ scale: 1.02, y: -4 }}
+      className="relative w-full aspect-21/9 md:aspect-2/1 rounded-2xl overflow-hidden border border-white/5 cursor-pointer shadow-2xl"
+      style={{ backgroundColor: color }}
     >
-      {/* BACKGROUND GRADIENT */}
-      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#1a1a1a] to-[#0b0b0f]" />
+      {/* MESH PATTERN OVERLAY */}
+      <div className="absolute inset-0 dot-pattern opacity-30 z-0" />
       
-      {/* DRIVER IMAGE */}
-      <div className="absolute inset-0 z-10">
-        <motion.div
-          whileHover={{ scale: 1.1, y: 10 }}
-          className="relative w-full h-[65%]"
-        >
-          <Image 
-            src={image} 
-            alt={name} 
-            fill
-            className="object-contain object-bottom transition-transform duration-700" 
-          />
-        </motion.div>
-      </div>
+      {/* GRADIENT OVERLAY (LEFT TO RIGHT) */}
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/20 via-transparent to-transparent" />
 
-      {/* DRIVER NUMBER (TOP RIGHT - FADED) */}
-      <div className="absolute top-2 right-4 z-0 text-8xl font-black italic text-white/5 select-none tracking-tighter">
-        {number}
-      </div>
+      {/* CONTENT GRID */}
+      <div className="relative z-20 h-full w-full flex p-6 md:p-8">
+        
+        {/* LEFT SIDE: INFO */}
+        <div className="flex flex-col h-full items-start justify-start w-1/2">
+          <div className="mb-auto">
+            <h3 className="text-2xl md:text-3xl font-black leading-none text-white tracking-tight">
+              {firstName}<br />
+              <span className="uppercase">{lastName}</span>
+            </h3>
+            <p className="text-xs md:text-sm font-bold text-white/60 tracking-wider mt-1 uppercase">
+              {team}
+            </p>
+          </div>
 
-      {/* INFO PANEL (BOTTOM OVERLAY) */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 p-5 bg-white/5 backdrop-blur-md border-t border-white/10 group-hover:bg-white/10 transition-colors">
-        <div className="flex items-center gap-2 mb-3">
-           <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Current Lap Time</span>
-           <span className={`${trend === "up" ? "text-green-400" : "text-f1-red"}`}>
-              {trend === "up" ? "▲" : "▼"}
-           </span>
+          <div className="mt-4">
+            <span className="text-4xl md:text-5xl font-black italic text-white/90 tracking-tighter">
+              {number}
+            </span>
+          </div>
+
+          <div className="mt-auto">
+            <span className="text-2xl md:text-3xl filter drop-shadow-lg">{flag}</span>
+          </div>
         </div>
 
-        <div className="flex flex-col mb-4">
-           <div className="flex items-baseline gap-1">
-              <span className="text-5xl font-black italic tracking-tighter leading-none">
-                 {lapTime.split('.')[0]}<span className="text-white/20">.</span>
-              </span>
-              <span className="text-3xl font-black italic tracking-tighter text-white/40">
-                 {lapTime.split('.')[1]}
-              </span>
-           </div>
+        {/* RIGHT SIDE: IMAGE */}
+        <div className="flex-1 relative h-full">
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="absolute right-0 bottom-[-20px] w-[140%] h-[130%] z-20"
+          >
+            <Image 
+              src={image} 
+              alt={name} 
+              fill
+              className="object-contain object-bottom" 
+            />
+          </motion.div>
         </div>
 
-        <div className="flex flex-col">
-           <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-[10px] font-bold text-white/40">{countryCode}</span>
-              <span className="text-sm font-black uppercase tracking-tight">{name}</span>
-           </div>
-           <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">{team}</p>
-        </div>
       </div>
 
-      {/* TEAM COLOR ACCENT (VERTICAL + GLOW) */}
-      <div 
-        className="absolute top-0 left-0 w-1 h-full z-40 transition-all duration-500 group-hover:w-1.5 shadow-[0_0_20px_var(--glow-color)] group-hover:shadow-[0_0_30px_var(--glow-color)]"
-        style={{ backgroundColor: color }}
-      />
+      {/* SUBTLE INNER BORDER */}
+      <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none z-30" />
     </motion.div>
   );
 };

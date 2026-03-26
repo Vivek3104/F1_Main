@@ -27,14 +27,14 @@ export const DriversSection = () => {
       </div>
 
       {/* RESPONSIVE GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {displayDrivers.map((driver, idx) => (
           <motion.div
             key={driver.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
+            transition={{ delay: idx * 0.05 }}
           >
             <DriverCard 
               name={driver.name}
@@ -42,10 +42,7 @@ export const DriversSection = () => {
               number={driver.number}
               image={driver.image}
               color={driver.color}
-              // @ts-ignore
-              countryCode={driver.countryCode}
-              lapTime={driver.lapTime}
-              trend={driver.trend as any}
+              flag={driver.flag}
             />
           </motion.div>
         ))}
