@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface DriverCardProps {
   name: string;
@@ -20,18 +21,24 @@ export const DriverCard = ({ name, team, number, image, color, flag = "🇮🇹"
       className="relative group cursor-pointer aspect-4/5 rounded-2xl overflow-hidden border border-white/10"
     >
       {/* BACKGROUND / IMAGE */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#1a1a1a] to-black" />
+      
+      <div className="absolute inset-x-0 top-0 bottom-1/4 z-10 overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-80"
-          style={{ background: `linear-gradient(135deg, ${color}dd, #000000)` }}
+          className="absolute inset-0 opacity-40 mix-blend-overlay"
+          style={{ backgroundColor: color }}
         />
-        <Image 
-          src={image} 
-          alt={name} 
-          fill
-          className="object-cover object-top mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 scale-110 group-hover:scale-100" 
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
+        <motion.div
+          whileHover={{ scale: 1.1, y: 10 }}
+          className="relative w-full h-full"
+        >
+          <Image 
+            src={image} 
+            alt={name} 
+            fill
+            className="object-contain object-bottom transition-transform duration-500" 
+          />
+        </motion.div>
       </div>
 
       {/* DRIVER NUMBER (TOP RIGHT) */}

@@ -49,7 +49,7 @@ export const DRIVERS = [
     team: "RED BULL RACING",
     number: "1",
     color: "#3671C6",
-    image: "/drivers/driver-1.png",
+    image: "/drivers/driver-1-png.png",
     flag: "🇳🇱",
     lapTime: "1:10.234",
     trend: "up"
@@ -60,7 +60,7 @@ export const DRIVERS = [
     team: "FERRARI",
     number: "44",
     color: "#f00000",
-    image: "/drivers/driver-2.png",
+    image: "/drivers/driver-2-png.png",
     flag: "🇬🇧",
     lapTime: "1:14.583",
     trend: "down"
@@ -71,7 +71,7 @@ export const DRIVERS = [
     team: "MCLAREN",
     number: "4",
     color: "#ff8700",
-    image: "/drivers/driver-3.png",
+    image: "/drivers/driver-3-png.png",
     flag: "🇬🇧",
     lapTime: "1:10.891",
     trend: "up"
@@ -82,7 +82,7 @@ export const DRIVERS = [
     team: "FERRARI",
     number: "16",
     color: "#f00000",
-    image: "/drivers/driver-1.png",
+    image: "/drivers/driver-1-png.png",
     flag: "🇲🇨",
     lapTime: "1:12.617",
     trend: "up"
