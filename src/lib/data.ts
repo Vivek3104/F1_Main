@@ -63,6 +63,8 @@ export const DRIVERS = [
   { id: 18, name: "ALEXANDER ALBON", team: "WILLIAMS", number: "23", color: "#64C4FF", image: "/drivers/driver-1-png.png", flag: "🇹🇭", countryCode: "TH" },
   { id: 19, name: "SERGIO PEREZ", team: "CADILLAC", number: "11", color: "#B6BABD", image: "/drivers/driver-4-png.png", flag: "🇲🇽", countryCode: "MX" },
   { id: 20, name: "VALTTERI BOTTAS", team: "CADILLAC", number: "77", color: "#B6BABD", image: "/drivers/driver-5-png.png", flag: "🇫🇮", countryCode: "FI" },
+  { id: 21, name: "FERNANDO ALONSO", team: "ASTON MARTIN", number: "14", color: "#006F62", image: "/drivers/driver-5-png.png", flag: "🇪🇸", countryCode: "ES" },
+  { id: 22, name: "LANCE STROLL", team: "ASTON MARTIN", number: "18", color: "#006F62", image: "/drivers/driver-3-png.png", flag: "🇨🇦", countryCode: "CA" },
 ];
 
 export const TEAMS = [
@@ -72,8 +74,10 @@ export const TEAMS = [
   { id: 4, name: "MERCEDES-AMG", color: "#27F4D2" },
   { id: 5, name: "ASTON MARTIN", color: "#229971" },
   { id: 6, name: "ALPINE", color: "#0093cc" },
-  { id: 7, name: "WILLIAMS", color: "#64C4FF" },
+  { id: 7, name: "WILLIAMS", color: "#64C4FF", logo: "/teams/williams-logo.png" },
   { id: 8, name: "RB (VCARB)", color: "#6692FF" },
   { id: 9, name: "SAUBER (STAKE)", color: "#52e252" },
   { id: 10, name: "HAAS", color: "#B6BABD" },
+  { id: 11, name: "CADILLAC", color: "#B6BABD", logo: "/teams/cadillac-logo.png" },
+  { id: 12, name: "ASTON MARTIN", color: "#006F62", logo: "/teams/aston-martin-logo.png" },
 ];
