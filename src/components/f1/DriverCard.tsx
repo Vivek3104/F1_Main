@@ -9,6 +9,9 @@ interface DriverCardProps {
   number: string;
   image: string;
   color: string;
+  countryCode?: string;
+  lapTime?: string;
+  trend?: "up" | "down";
 }
 
 export const DriverCard = ({ 
@@ -17,58 +20,76 @@ export const DriverCard = ({
   number, 
   image, 
   color, 
+  countryCode = "NL", 
+  lapTime = "1:15.234", 
+  trend = "up" 
 }: DriverCardProps) => {
-  const firstName = name.split(' ')[0];
-  const lastName = name.split(' ').slice(1).join(' ');
-
   return (
     <motion.div 
-      whileHover={{ scale: 1.02, y: -4 }}
-      className="relative flex items-center h-52 rounded-2xl overflow-hidden group cursor-pointer shadow-2xl"
-      style={{ backgroundColor: color }}
+      whileHover={{ scale: 1.03 }}
+      className="relative group cursor-pointer aspect-4/5 rounded-2xl overflow-hidden border border-white/10 transition-shadow duration-500"
+      style={{ 
+         // @ts-ignore
+         "--glow-color": color 
+      }}
     >
-      {/* GRID / MESH OVERLAY */}
-      <div className="absolute inset-0 f1-grid opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-linear-to-r from-black/40 via-transparent to-black/10 pointer-events-none" />
+      {/* BACKGROUND GRADIENT */}
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#1a1a1a] to-[#0b0b0f]" />
       
-      {/* LEFT INFO PANEL */}
-      <div className="relative z-10 flex-1 p-8 flex flex-col justify-between h-full">
-        <div className="flex flex-col">
-          <h3 className="flex flex-col leading-none tracking-tight">
-            <span className="text-xl font-light text-white opacity-80 capitalize mb-1">{firstName.toLowerCase()}</span>
-            <span className="text-4xl font-black uppercase tracking-tighter text-white drop-shadow-md">
-              {lastName}
-            </span>
-          </h3>
-          <p className="text-xs font-bold text-white/60 uppercase tracking-widest mt-2">{team}</p>
-          <span className="text-4xl font-black italic text-white/20 mt-4 block leading-none">{number}</span>
-        </div>
-        
-        {/* CIRCULAR FLAG ICON */}
-        <div className="mt-auto">
-          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl shadow-lg">
-             🏁
-          </div>
-        </div>
-      </div>
-
-      {/* RIGHT DRIVER IMAGE */}
-      <div className="relative z-10 w-[45%] h-full pr-4">
+      {/* DRIVER IMAGE */}
+      <div className="absolute inset-0 z-10">
         <motion.div
-          whileHover={{ x: 5, scale: 1.05 }}
-          className="relative w-full h-[110%] -bottom-[5%]"
+          whileHover={{ scale: 1.1, y: 10 }}
+          className="relative w-full h-[65%]"
         >
           <Image 
             src={image} 
             alt={name} 
             fill
-            className="object-contain object-bottom drop-shadow-[0_20px_20px_rgba(0,0,0,0.5)] transition-transform duration-700" 
+            className="object-contain object-bottom transition-transform duration-700" 
           />
         </motion.div>
       </div>
 
-      {/* TEAM COLOR ACCENT (SUBTLE INNER GLOW) */}
-      <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-2xl" />
+      {/* DRIVER NUMBER (TOP RIGHT - FADED) */}
+      <div className="absolute top-2 right-4 z-0 text-8xl font-black italic text-white/5 select-none tracking-tighter">
+        {number}
+      </div>
+
+      {/* INFO PANEL (BOTTOM OVERLAY) */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 p-5 bg-white/5 backdrop-blur-md border-t border-white/10 group-hover:bg-white/10 transition-colors">
+        <div className="flex items-center gap-2 mb-3">
+           <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Current Lap Time</span>
+           <span className={`${trend === "up" ? "text-green-400" : "text-f1-red"}`}>
+              {trend === "up" ? "▲" : "▼"}
+           </span>
+        </div>
+
+        <div className="flex flex-col mb-4">
+           <div className="flex items-baseline gap-1">
+              <span className="text-5xl font-black italic tracking-tighter leading-none">
+                 {lapTime.split('.')[0]}<span className="text-white/20">.</span>
+              </span>
+              <span className="text-3xl font-black italic tracking-tighter text-white/40">
+                 {lapTime.split('.')[1]}
+              </span>
+           </div>
+        </div>
+
+        <div className="flex flex-col">
+           <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-[10px] font-bold text-white/40">{countryCode}</span>
+              <span className="text-sm font-black uppercase tracking-tight">{name}</span>
+           </div>
+           <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">{team}</p>
+        </div>
+      </div>
+
+      {/* TEAM COLOR ACCENT (VERTICAL + GLOW) */}
+      <div 
+        className="absolute top-0 left-0 w-1 h-full z-40 transition-all duration-500 group-hover:w-1.5 shadow-[0_0_20px_var(--glow-color)] group-hover:shadow-[0_0_30px_var(--glow-color)]"
+        style={{ backgroundColor: color }}
+      />
     </motion.div>
   );
 };
