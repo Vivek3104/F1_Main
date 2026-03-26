@@ -27,25 +27,18 @@ export const DriversSection = () => {
       </div>
 
       {/* RESPONSIVE GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {displayDrivers.map((driver, idx) => (
           <motion.div
             key={driver.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
           >
-            <DriverCard
-              name={driver.name}
-              team={driver.team}
-              number={driver.number}
-              image={driver.image}
-              color={driver.color}
-              // @ts-ignore
-              countryCode={driver.countryCode}
-              lapTime={driver.lapTime}
-              trend={driver.trend as any}
+            <DriverCard 
+              {...driver}
+              rank={idx + 1}
             />
           </motion.div>
         ))}
