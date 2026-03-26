@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Team {
+  id            String     @id @default(uuid())
+  name          String     @unique
+  principal     String
+  base          String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  drivers       Driver[]
+  standings     Standing[] @relation("TeamStanding")
+}
+
+model Driver {
+  id            String     @id @default(uuid())
+  name          String
+  number        Int        @unique
+  nationality   String
+  teamId        String?
+  team          Team?      @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  standings     Standing[] @relation("DriverStanding")
+}
+
+model Circuit {
+  id        String   @id @default(uuid())
+  name      String
+  location  String
+  country   String
+  length    Float    // Length in km
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  races     Race[]
+}
+
+model Race {
+  id          String   @id @default(uuid())
+  name        String
+  date        DateTime
+  circuitId   String
+  circuit     Circuit  @relation(fields: [circuitId], references: [id], onDelete: Cascade)
+  status      RaceStatus @default(SCHEDULED)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum RaceStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+  CANCELLED
+}
+
+model Standing {
+  id        String       @id @default(uuid())
+  type      StandingType
+  season    Int
+  points    Float        @default(0)
+  position  Int
+  driverId  String?
+  driver    Driver?      @relation("DriverStanding", fields: [driverId], references: [id], onDelete: Cascade)
+  teamId    String?
+  team      Team?        @relation("TeamStanding", fields: [teamId], references: [id], onDelete: Cascade)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([type, season, driverId])
+  @@unique([type, season, teamId])
+}
+
+enum StandingType {
+  DRIVER
+  CONSTRUCTOR
+}
