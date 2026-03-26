@@ -9,8 +9,6 @@ interface DriverCardProps {
   number: string;
   image: string;
   color: string;
-  countryCode?: string;
-  flag?: string; // Add flag prop back for the UI
 }
 
 export const DriverCard = ({ 
@@ -25,51 +23,52 @@ export const DriverCard = ({
 
   return (
     <motion.div 
-      whileHover={{ scale: 1.02 }}
-      className="relative flex items-center h-48 rounded-xl overflow-hidden group cursor-pointer"
+      whileHover={{ scale: 1.02, y: -4 }}
+      className="relative flex items-center h-52 rounded-2xl overflow-hidden group cursor-pointer shadow-2xl"
       style={{ backgroundColor: color }}
     >
-      {/* TEXTURE / PATTERN OVERLAY */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '12px 12px' }} />
+      {/* GRID / MESH OVERLAY */}
+      <div className="absolute inset-0 f1-grid opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-r from-black/40 via-transparent to-black/10 pointer-events-none" />
       
-      {/* LEFT INFO SIDE */}
-      <div className="relative z-10 flex-1 p-6 flex flex-col justify-between h-full bg-linear-to-r from-black/40 to-transparent">
-        <div>
-          <h3 className="flex flex-col leading-none">
-            <span className="text-xl font-light text-white opacity-90">{firstName}</span>
-            <span className="text-3xl font-black uppercase tracking-tighter text-white">{lastName}</span>
+      {/* LEFT INFO PANEL */}
+      <div className="relative z-10 flex-1 p-8 flex flex-col justify-between h-full">
+        <div className="flex flex-col">
+          <h3 className="flex flex-col leading-none tracking-tight">
+            <span className="text-xl font-light text-white opacity-80 capitalize mb-1">{firstName.toLowerCase()}</span>
+            <span className="text-4xl font-black uppercase tracking-tighter text-white drop-shadow-md">
+              {lastName}
+            </span>
           </h3>
-          <p className="text-xs font-bold text-white/70 uppercase mt-1">{team}</p>
-          <span className="text-4xl font-black italic text-white/20 mt-2 block">{number}</span>
+          <p className="text-xs font-bold text-white/60 uppercase tracking-widest mt-2">{team}</p>
+          <span className="text-4xl font-black italic text-white/20 mt-4 block leading-none">{number}</span>
         </div>
         
-        {/* ROUND FLAG ICON */}
-        <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/20 relative">
-           <div className="absolute inset-0 flex items-center justify-center bg-white/10 text-lg">
-             {/* Fallback to text if no image, but we'll use a placeholder or the emoji */}
+        {/* CIRCULAR FLAG ICON */}
+        <div className="mt-auto">
+          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl shadow-lg">
              🏁
-           </div>
+          </div>
         </div>
       </div>
 
-      {/* RIGHT IMAGE SIDE */}
-      <div className="relative z-10 w-[45%] h-full">
+      {/* RIGHT DRIVER IMAGE */}
+      <div className="relative z-10 w-[45%] h-full pr-4">
         <motion.div
-          whileHover={{ x: 10, scale: 1.05 }}
-          className="relative w-full h-full"
+          whileHover={{ x: 5, scale: 1.05 }}
+          className="relative w-full h-[110%] -bottom-[5%]"
         >
           <Image 
             src={image} 
             alt={name} 
             fill
-            className="object-contain object-bottom transition-transform duration-500" 
+            className="object-contain object-bottom drop-shadow-[0_20px_20px_rgba(0,0,0,0.5)] transition-transform duration-700" 
           />
         </motion.div>
       </div>
 
-      {/* GRADIENT OVERLAY FOR DEPTH */}
-      <div className="absolute inset-0 bg-linear-to-r from-black/20 via-transparent to-black/10 pointer-events-none" />
+      {/* TEAM COLOR ACCENT (SUBTLE INNER GLOW) */}
+      <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-2xl" />
     </motion.div>
   );
 };
