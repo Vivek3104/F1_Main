@@ -16,13 +16,25 @@ interface DriverEntry {
 
 const leaderboard: DriverEntry[] = [
   { id: 1, pos: 1, code: "VER", gap: "LEADER", interval: "-", tire: "M", teamColor: "#3671C6" },
-  { id: 2, pos: 2, code: "HAM", gap: "+1.245", interval: "+1.245", tire: "M", teamColor: "#f00000" },
-  { id: 3, pos: 3, code: "NOR", gap: "+4.582", interval: "+3.337", tire: "S", teamColor: "#ff8700" },
-  { id: 4, pos: 4, code: "LEC", gap: "+5.120", interval: "+0.538", tire: "M", teamColor: "#f00000" },
-  { id: 5, pos: 5, code: "PIA", gap: "+8.901", interval: "+3.781", tire: "S", teamColor: "#ff8700" },
-  { id: 6, pos: 6, code: "RUS", gap: "+10.234", interval: "+1.333", tire: "H", teamColor: "#27F4D2" },
-  { id: 7, pos: 7, code: "SAI", gap: "+12.455", interval: "+2.221", tire: "M", teamColor: "#f00000" },
-  { id: 8, pos: 8, code: "ALO", gap: "+15.678", interval: "+3.223", tire: "H", teamColor: "#229971" },
+  { id: 5, pos: 2, code: "NOR", gap: "+1.245", interval: "+1.245", tire: "M", teamColor: "#ff8700" },
+  { id: 4, pos: 3, code: "LEC", gap: "+4.582", interval: "+3.337", tire: "S", teamColor: "#f00000" },
+  { id: 6, pos: 4, code: "PIA", gap: "+5.120", interval: "+0.538", tire: "M", teamColor: "#ff8700" },
+  { id: 7, pos: 5, code: "RUS", gap: "+8.901", interval: "+3.781", tire: "S", teamColor: "#27F4D2" },
+  { id: 3, pos: 6, code: "HAM", gap: "+10.234", interval: "+1.333", tire: "H", teamColor: "#f00000" },
+  { id: 14, pos: 7, code: "SAI", gap: "+12.455", interval: "+2.221", tire: "M", teamColor: "#64C4FF" },
+  { id: 9, pos: 8, code: "ALO", gap: "+15.678", interval: "+3.223", tire: "H", teamColor: "#229971" },
+  { id: 2, pos: 9, code: "PER", gap: "+18.901", interval: "+3.223", tire: "M", teamColor: "#3671C6" },
+  { id: 13, pos: 10, code: "ALB", gap: "+21.432", interval: "+2.531", tire: "M", teamColor: "#64C4FF" },
+  { id: 11, pos: 11, code: "GAS", gap: "+24.567", interval: "+3.135", tire: "M", teamColor: "#0093cc" },
+  { id: 16, pos: 12, code: "LAW", gap: "+27.890", interval: "+3.323", tire: "S", teamColor: "#6692FF" },
+  { id: 8, pos: 13, code: "ANT", gap: "+30.123", interval: "+2.233", tire: "M", teamColor: "#27F4D2" },
+  { id: 15, pos: 14, code: "TSU", gap: "+32.456", interval: "+2.333", tire: "H", teamColor: "#6692FF" },
+  { id: 10, pos: 15, code: "STR", gap: "+35.678", interval: "+3.222", tire: "M", teamColor: "#229971" },
+  { id: 17, pos: 16, code: "HUL", gap: "+38.901", interval: "+3.223", tire: "H", teamColor: "#52e252" },
+  { id: 19, pos: 17, code: "OCO", gap: "+41.234", interval: "+2.333", tire: "M", teamColor: "#B6BABD" },
+  { id: 12, pos: 18, code: "DOO", gap: "+44.567", interval: "+3.333", tire: "S", teamColor: "#0093cc" },
+  { id: 20, pos: 19, code: "BEA", gap: "+47.890", interval: "+3.323", tire: "M", teamColor: "#B6BABD" },
+  { id: 18, pos: 20, code: "BOR", gap: "+51.222", interval: "+3.332", tire: "H", teamColor: "#52e252" },
 ];
 
 const TireIcon = ({ type }: { type: DriverEntry["tire"] }) => {
